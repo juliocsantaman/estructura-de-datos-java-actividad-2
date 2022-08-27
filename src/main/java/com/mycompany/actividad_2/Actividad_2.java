@@ -33,16 +33,30 @@ public class Actividad_2 {
         Node result = myList.find("Santaman");
         
         System.out.println("Información del nodo encontrado es: " + result.data);
+        System.out.println("Exist Santaman: " + myList.exist("Santaman"));
         
-        System.out.println("Eliminando el nodo 2 que tiene como data: otro dato");
+        myList.insertAtLastPosition("Juuz");
+        myList.insertAtLastPosition("Programming");
+        
+        // Se empieza desde el 1.
+        System.out.println("Eliminando el nodo 3 que tiene como data: Programming");
         try {
-            myList.delete(2);
+            myList.delete(1);
         } catch (Exception ex) {
             System.err.println("Hay una excepción: " + ex.getMessage());
         }
         
         System.out.println("Volviendo a imprimir los nodos:");
         myList.show();
+        
+        System.out.println("Cantidad de nodos: " + myList.getSize());
+        
+        System.out.println("Buscando node data por medio de posición");
+        try {
+            System.out.println(myList.get(3));
+        } catch (Exception ex) {
+            System.err.println("Hay una excepción: " + ex.getMessage());
+        }
     }
     
     

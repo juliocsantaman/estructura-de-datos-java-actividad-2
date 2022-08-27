@@ -50,8 +50,7 @@ public class List {
         Node nodeToInsert = new Node(value);
 
         //nodeToInsert.next = new Node("Otro dato");
-        nodeToInsert.next = null;
-
+        //nodeToInsert.next = null;
         firstNode = nodeToInsert;
 
     }
@@ -75,14 +74,14 @@ public class List {
             currentNode = currentNode.next;
 
         }
-        
+
         System.out.println("");
 
     }
 
     /**
      *
-     * Poner un valor en la posición inicial
+     * Poner un valor en la última posición
      *
      * @param value to insert
      *
@@ -91,7 +90,8 @@ public class List {
 
         Node nodeToInsert = new Node(value);//Nodo a insertar
 
-        nodeToInsert.next = firstNode;//Nodo que recorre la lista
+        //nodeToInsert.next = firstNode;//Nodo que recorre la lista
+        currentNode = firstNode;
 
         if (this.isEmpty()) { //si la lista está vacía
 
@@ -188,14 +188,18 @@ public class List {
             //primer nodo de la lista
             firstNode = firstNode.next;
 
+            //System.out.println("delete: " + firstNode.next.data);
+            // para hacer que sea nulo.
         } else {
 
             currentNode = firstNode;
 
             //Nos movemos hasta la posición anterior al nodo a borrar
-            for (int i = 1; i < position - 1; i++) {
-
-                if (currentNode.next != null) {
+            position = position - 1;
+            for (int i = 1; i < position; i++) {
+                System.out.println("Valor de i: " + i);
+                System.out.println("Valor de position: " + position);
+                if (currentNode.next == null) {
 
                     throw new Exception("La posición es mayor al tamaño "
                             + "de la lista");
@@ -207,10 +211,99 @@ public class List {
             }
 
             //Igualaremos el next del nodo anterior al next del nodo a borrar
-            currentNode.next = (currentNode.next).next;
+            currentNode.next = (currentNode.next).next; // para hacer que sea nulo.
 
         }
 
     }
 
+    /**
+     *
+     *
+     * Devuelve TRUE o FALSE si encuentra el valor establecido en la lista
+     *
+     * @param value
+     *
+     *
+     */
+    public boolean exist(String value) {
+        Node result = null; // Nodo a  buscar      
+
+        currentNode = this.firstNode;//Nodo que recorre la lista
+
+        boolean finded = false;
+
+        //Mientras  no hayamos llegado al final
+        //y el  resultado aún sea nulo
+        while (currentNode != null && !finded) {
+
+            if (currentNode.data.equals(value)) {
+
+                finded = true;
+
+                result = currentNode;
+
+            }
+
+            currentNode = currentNode.next;
+
+        }
+
+        return finded;
+    }
+
+    /**
+     *
+     *
+     * Devuelve el elemento que está en la posición dada.
+     *
+     * @param position
+     *
+     *
+     */
+    public String get(int position) throws Exception {
+
+        if (position > getSize() || position == 0) {
+            throw new Exception("La posición no existe en la lista.");
+        }
+
+        String value = "";
+
+        currentNode = this.firstNode;//Nodo que recorre la lista
+
+        //Mientras  no hayamos llegado al final
+        for (int i = 1; i <= position; i++) {
+
+            if (position == i) {
+                value = currentNode.data;
+            }
+
+            currentNode = currentNode.next;
+        }
+
+        return value;
+    }
+
+    /**
+     *
+     *
+     * Devuelve el número de nodos.
+     *
+     *
+     *
+     *
+     */
+    public int getSize() {
+        int size = 0;
+        currentNode = this.firstNode;//Nodo que recorre la lista
+
+        //Mientras  no hayamos llegado al final
+        //y el  resultado aún sea nulo
+        while (currentNode != null) {
+            size++; // Aumentamos en 1.
+            currentNode = currentNode.next;
+        }
+
+        return size;
+    }
 }
