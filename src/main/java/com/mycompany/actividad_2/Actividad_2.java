@@ -53,7 +53,13 @@ public class Actividad_2 {
         
         System.out.println("Buscando node data por medio de posición");
         try {
-            System.out.println(myList.get(3));
+            System.out.println(myList.getData(2));
+        } catch (Exception ex) {
+            System.err.println("Hay una excepción: " + ex.getMessage());
+        }
+        
+        try {
+            myList.update(1, "update");
         } catch (Exception ex) {
             System.err.println("Hay una excepción: " + ex.getMessage());
         }

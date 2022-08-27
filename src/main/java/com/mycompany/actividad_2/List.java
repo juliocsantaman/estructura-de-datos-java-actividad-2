@@ -258,10 +258,10 @@ public class List {
      * Devuelve el elemento que está en la posición dada.
      *
      * @param position
-     *
+     * @throws Exception *
      *
      */
-    public String get(int position) throws Exception {
+    public String getData(int position) throws Exception {
 
         if (position > getSize() || position == 0) {
             throw new Exception("La posición no existe en la lista.");
@@ -276,6 +276,38 @@ public class List {
 
             if (position == i) {
                 value = currentNode.data;
+            }
+
+            currentNode = currentNode.next;
+        }
+
+        return value;
+    }
+
+    /**
+     *
+     *
+     * Devuelve el elemento que está en la posición dada.
+     *
+     * @param position
+     * @throws Exception *
+     *
+     */
+    public Node getNode(int position) throws Exception {
+
+        if (position > getSize() || position == 0) {
+            throw new Exception("La posición no existe en la lista.");
+        }
+
+        Node value = null;
+
+        currentNode = this.firstNode;//Nodo que recorre la lista
+
+        //Mientras  no hayamos llegado al final
+        for (int i = 1; i <= position; i++) {
+
+            if (position == i) {
+                value = currentNode;
             }
 
             currentNode = currentNode.next;
@@ -306,4 +338,81 @@ public class List {
 
         return size;
     }
+
+    /**
+     *
+     *
+     * Devuelve la lista con el elemento nuevo en la posición dada.
+     *
+     * @param position
+     * @param element
+     * @throws Exception *
+     *
+     *
+     */
+    public void update(int position, String element) throws Exception {
+
+        if (getSize() == 0) {
+            throw new Exception("La lista está vacía.");
+        }
+
+        if (position > getSize() || position == 0) {
+            throw new Exception("La posición no existe en la lista.");
+        }
+
+        currentNode = this.firstNode;//Nodo que recorre la lista
+
+        //Mientras  no hayamos llegado al final
+        for (int i = 1; i <= position; i++) {
+
+            if (position == i) {
+
+                currentNode.data = element;
+            }
+
+            currentNode = currentNode.next;
+        }
+
+        show();
+
+    }
+
+    /**
+     *
+     *
+     * Devuelve la lista después de agregar el elemento en la posición establecida.
+     *
+     * @param position
+     * @param element
+     * @throws Exception *
+     *
+     *
+     */
+    public void insert(int position, String element) throws Exception {
+
+        if (getSize() == 0) {
+            throw new Exception("La lista está vacía.");
+        }
+
+        if (position > getSize() || position == 0) {
+            throw new Exception("La posición no existe en la lista.");
+        }
+
+        currentNode = this.firstNode;//Nodo que recorre la lista
+
+        //Mientras  no hayamos llegado al final
+        for (int i = 1; i <= position; i++) {
+
+            if (position == i) {
+
+                currentNode.data = element;
+            }
+
+            currentNode = currentNode.next;
+        }
+
+        show();
+
+    }
+
 }
